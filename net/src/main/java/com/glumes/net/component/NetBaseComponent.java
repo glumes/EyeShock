@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 @Component(modules = {
         NetBaseModule.class
 })
-public interface NetComponent {
+public interface NetBaseComponent {
 
     OkHttpClient okHttpClient();
 

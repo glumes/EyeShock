@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -21,10 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by glumes on 2017/8/21.
  */
 
+@Module
 public class NetBaseModule {
 
     public static final int TIME_OUT = 3;
-    public static final String BASE_URL = "http://baobab.kaiyanapp.com/api/v4/tabs/selected";
+    public static final String BASE_URL = "http://baobab.kaiyanapp.com/api/v4/tabs/selected/";
 
     @Singleton
     @Provides
