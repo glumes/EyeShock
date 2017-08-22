@@ -1,6 +1,7 @@
 package com.glumes.net.component;
 
 import com.glumes.net.NetClient;
+import com.glumes.net.ServiceFactory;
 import com.glumes.net.module.EyeShockModule;
 import com.glumes.net.scope.EyeShockScope;
 
@@ -18,5 +19,5 @@ import dagger.Component;
         }
 )
 public interface EyeShockComponent {
-    void inject(NetClient netClient);
+    void inject(ServiceFactory serviceFactory);
 }

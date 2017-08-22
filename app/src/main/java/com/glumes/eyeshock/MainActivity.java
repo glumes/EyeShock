@@ -29,29 +29,29 @@ public class MainActivity extends AppCompatActivity {
 
         NetClient netClient = new NetClient();
 
-        netClient.request().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HomeBean>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        LogUtil.d("onSubscribe");
-                    }
-
-                    @Override
-                    public void onNext(@NonNull HomeBean homeBean) {
-                        LogUtil.d("onNext");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        LogUtil.e(e.getMessage(), e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        LogUtil.d("onComplete");
-                    }
-                });
+//        netClient.request().subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<HomeBean>() {
+//                    @Override
+//                    public void onSubscribe(@NonNull Disposable d) {
+//                        LogUtil.d("onSubscribe");
+//                    }
+//
+//                    @Override
+//                    public void onNext(@NonNull HomeBean homeBean) {
+//                        LogUtil.d("onNext");
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        LogUtil.e(e.getMessage(), e);
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        LogUtil.d("onComplete");
+//                    }
+//                });
     }
 
 

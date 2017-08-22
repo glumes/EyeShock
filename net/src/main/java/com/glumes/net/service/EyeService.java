@@ -1,5 +1,9 @@
 package com.glumes.net.service;
 
+import com.glumes.net.bean.DiscoveryAuthorBean;
+import com.glumes.net.bean.DiscoveryBean;
+import com.glumes.net.bean.DiscoveryCategoryBean;
+import com.glumes.net.bean.DiscoveryHotBean;
 import com.glumes.net.bean.HomeBean;
 
 import io.reactivex.Observable;
@@ -16,4 +20,25 @@ public interface EyeService {
     Observable<HomeBean> requetHomeContent(
             @Url String url
     );
+
+    @GET
+    Observable<DiscoveryBean> requestDiscovery(
+            @Url String url
+    );
+
+    @GET
+    Observable<DiscoveryHotBean> requestDiscoveryHot(
+            @Url String url
+    );
+
+    @GET
+    Observable<DiscoveryCategoryBean> requestDiscoveryCategory(
+            @Url String url
+    );
+
+    @GET
+    Observable<DiscoveryAuthorBean> requestDiscoveryAuthor(
+            @Url String url
+    );
+
 }
