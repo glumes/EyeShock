@@ -1,6 +1,6 @@
 package com.glumes.net.module;
 
-import com.glumes.net.scope.EyeShockScope;
+import com.glumes.net.scope.ServiceScope;
 import com.glumes.net.service.EyeService;
 
 import dagger.Module;
@@ -12,12 +12,12 @@ import retrofit2.Retrofit;
  */
 
 @Module
-public class EyeShockModule {
+public class ServiceModule {
 
-    public EyeShockModule() {
+    public ServiceModule() {
     }
 
-    @EyeShockScope
+    @ServiceScope
     @Provides
     EyeService provideEyeService(Retrofit retrofit) {
         return retrofit.create(EyeService.class);

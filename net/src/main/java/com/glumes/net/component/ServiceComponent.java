@@ -1,9 +1,8 @@
 package com.glumes.net.component;
 
-import com.glumes.net.NetClient;
 import com.glumes.net.ServiceFactory;
-import com.glumes.net.module.EyeShockModule;
-import com.glumes.net.scope.EyeShockScope;
+import com.glumes.net.module.ServiceModule;
+import com.glumes.net.scope.ServiceScope;
 
 import dagger.Component;
 
@@ -11,13 +10,13 @@ import dagger.Component;
  * Created by glumes on 2017/8/21.
  */
 
-@EyeShockScope
+@ServiceScope
 @Component(
         dependencies = NetBaseComponent.class,
         modules = {
-                EyeShockModule.class
+                ServiceModule.class
         }
 )
-public interface EyeShockComponent {
+public interface ServiceComponent {
     void inject(ServiceFactory serviceFactory);
 }

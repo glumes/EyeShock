@@ -408,4 +408,14 @@ public class DiscoveryHotBean {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "DiscoveryHotBean{" +
+                "count=" + count +
+                ", total=" + total +
+                ", nextPageUrl='" + nextPageUrl + '\'' +
+                ", itemList=" + itemList +
+                '}';
+    }
 }

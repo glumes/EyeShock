@@ -13,9 +13,12 @@ import dagger.Provides;
 @Module
 public class NetClientModule {
 
+    public NetClientModule() {
+    }
+
     @NetClientScope
     @Provides
     ServiceFactory provideServiceFactory() {
-        return ServiceFactory.getInstance();
+        return new ServiceFactory();
     }
 }

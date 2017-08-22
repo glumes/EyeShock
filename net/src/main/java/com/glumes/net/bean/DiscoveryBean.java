@@ -82,5 +82,20 @@ public class DiscoveryBean {
                 this.apiUrl = apiUrl;
             }
         }
+
+        @Override
+        public String toString() {
+            return "TabInfoBean{" +
+                    "defaultIdx=" + defaultIdx +
+                    ", tabList=" + tabList +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "DiscoveryBean{" +
+                "tabInfo=" + tabInfo.toString() +
+                '}';
     }
 }
