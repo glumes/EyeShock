@@ -1,1 +1,1 @@
-include ':app', ':net', ':storage', ':comlib'
+include ':app', ':net', ':storage', ':comlib', ':views'
