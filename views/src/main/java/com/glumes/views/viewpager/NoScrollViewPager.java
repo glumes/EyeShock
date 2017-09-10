@@ -3,6 +3,9 @@ package com.glumes.views.viewpager;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+
+import com.glumes.comlib.LogUtil;
 
 /**
  * Created by glumes on 2017/9/2.
@@ -11,11 +14,28 @@ import android.util.AttributeSet;
 public class NoScrollViewPager extends ViewPager {
 
 
+    private boolean isPagingEnabled = true;
+
     public NoScrollViewPager(Context context) {
         super(context);
     }
 
     public NoScrollViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    public boolean onInterceptHoverEvent(MotionEvent event) {
+
+        return this.isPagingEnabled && super.onInterceptHoverEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return this.isPagingEnabled && super.onTouchEvent(ev);
+    }
+
+    public void setPagingEnabled(boolean pagingEnabled) {
+        isPagingEnabled = pagingEnabled;
     }
 }
