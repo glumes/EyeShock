@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.glumes.eyeshock.R;
 import com.glumes.eyeshock.databinding.FragmentHomeBinding;
 import com.glumes.eyeshock.fragments.BaseInfoFragment;
-import com.glumes.views.imageslider.slidertype.ImageSliderType;
+import com.glumes.views.viewslider.slidertype.imagetype.ImageSliderType;
 
 public class HomeFragment extends BaseInfoFragment {
     private static final String ARG_PARAM1 = "param1";

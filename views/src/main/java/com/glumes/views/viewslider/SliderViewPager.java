@@ -1,4 +1,4 @@
-package com.glumes.views.imageslider;
+package com.glumes.views.viewslider;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

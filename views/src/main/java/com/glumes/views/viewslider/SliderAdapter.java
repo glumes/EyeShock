@@ -1,12 +1,11 @@
-package com.glumes.views.imageslider;
+package com.glumes.views.viewslider;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.glumes.views.imageslider.imageloader.IImageLoader;
-import com.glumes.views.imageslider.slidertype.ISliderView;
+import com.glumes.views.viewslider.slidertype.ISliderView;
 
 import java.util.ArrayList;
 import java.util.List;

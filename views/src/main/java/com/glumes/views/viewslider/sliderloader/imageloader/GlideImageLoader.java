@@ -1,4 +1,4 @@
-package com.glumes.views.imageslider.imageloader;
+package com.glumes.views.viewslider.sliderloader.imageloader;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -10,7 +10,7 @@ import com.glumes.comlib.LogUtil;
  * Created by glumes on 2017/9/10.
  */
 
-public class GlideImageLoader implements IImageLoader {
+public class GlideImageLoader implements IImageSliderLoader {
 
     @Override
     public void loadImageView(Context context, Object path, ImageView imageView) {

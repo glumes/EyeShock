@@ -1,4 +1,4 @@
-package com.glumes.views.imageslider;
+package com.glumes.views.viewslider;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,37 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.glumes.comlib.LogUtil;
 import com.glumes.views.R;
-import com.glumes.views.imageslider.imageloader.GlideImageLoader;
-import com.glumes.views.imageslider.imageloader.IImageLoader;
-import com.glumes.views.imageslider.slidertype.ISliderView;
+import com.glumes.views.viewslider.sliderloader.imageloader.GlideImageLoader;
+import com.glumes.views.viewslider.sliderloader.imageloader.IImageSliderLoader;
+import com.glumes.views.viewslider.slidertype.ISliderView;
 
 /**
  * Created by glumes on 2017/9/10.
  */
 
-public class ImageSlider extends RelativeLayout {
+public class ViewSlider extends RelativeLayout {
 
     private Context mContext;
     private SliderViewPager sliderViewPager;
     private SliderAdapter sliderAdapter;
-    private IImageLoader imageLoader;
-    private IImageLoader defaultImageLoader;
+    private IImageSliderLoader imageLoader;
+    private IImageSliderLoader defaultImageLoader;
 
-    public ImageSlider(Context context) {
+    public ViewSlider(Context context) {
         super(context);
         mContext = context;
         initView();
     }
 
-    public ImageSlider(Context context, AttributeSet attrs) {
+    public ViewSlider(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         initView();
     }
 
-    public ImageSlider(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ViewSlider(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView();
@@ -63,7 +62,7 @@ public class ImageSlider extends RelativeLayout {
         sliderAdapter.addSlider(slider);
     }
 
-    public <T extends IImageLoader> void setImageLoader(T loader) {
+    public <T extends IImageSliderLoader> void setImageLoader(T loader) {
         imageLoader = loader;
     }
 

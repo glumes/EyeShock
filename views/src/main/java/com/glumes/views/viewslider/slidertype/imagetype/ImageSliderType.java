@@ -1,30 +1,28 @@
-package com.glumes.views.imageslider.slidertype;
+package com.glumes.views.viewslider.slidertype.imagetype;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.glumes.views.R;
-import com.glumes.views.imageslider.imageloader.IImageLoader;
-import com.glumes.views.imageslider.slidertype.BaseSliderView;
+import com.glumes.views.viewslider.sliderloader.imageloader.IImageSliderLoader;
 
 /**
  * Created by glumes on 2017/9/10.
  */
 
-public class ImageSliderType extends BaseSliderView {
+public class ImageSliderType extends BaseImageSlider {
 
 
-    private IImageLoader imageLoader;
+    private IImageSliderLoader imageLoader;
 
     public ImageSliderType(Context context) {
         super(context);
     }
 
     @Override
-    public void bindImageLoader(IImageLoader loader) {
+    public void bindImageLoader(IImageSliderLoader loader) {
         imageLoader = loader;
     }
 
