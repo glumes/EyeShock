@@ -3,11 +3,13 @@ package com.glumes.eyeshock.fragments.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.glumes.eyeshock.R;
+import com.glumes.eyeshock.adapter.ListAdapter;
 import com.glumes.eyeshock.databinding.FragmentHomeBinding;
 import com.glumes.eyeshock.fragments.BaseInfoFragment;
 import com.glumes.views.viewslider.slidertype.imagetype.ImageSliderType;
@@ -40,14 +42,12 @@ public class HomeFragment extends BaseInfoFragment {
         mViewModel = new HomeViewModel();
         return mBinding.getRoot();
 
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mBinding.tvShow.setText(mParam1);
 
         mViewModel.getHomeData();
 
@@ -63,7 +63,10 @@ public class HomeFragment extends BaseInfoFragment {
         slider3.image("http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         mBinding.imageSlider.addSlider(slider3);
 
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mBinding.recyclerView.setHasFixedSize(true);
+        mBinding.recyclerView.setLayoutManager(layoutManager);
+        mBinding.recyclerView.setAdapter(new ListAdapter());
     }
 
     public HomeFragment() {

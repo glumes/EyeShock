@@ -11,7 +11,7 @@
             type="com.glumes.eyeshock.model.MainActivityModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,15 +19,16 @@
         <com.glumes.views.viewpager.NoScrollViewPager
             android:id="@+id/noScrollViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigation" />
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_nav_items"/>
+            app:menu="@menu/bottom_nav_items" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

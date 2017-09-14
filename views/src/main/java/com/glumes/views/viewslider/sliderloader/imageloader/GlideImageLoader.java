@@ -19,6 +19,6 @@ public class GlideImageLoader implements IImageSliderLoader {
         }else {
             LogUtil.d("path is null");
         }
-        Glide.with(context).load(path).into(imageView);
+        Glide.with(context).load(path).fitCenter().into(imageView);
     }
 }

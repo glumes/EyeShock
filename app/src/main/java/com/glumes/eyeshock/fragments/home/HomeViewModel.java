@@ -1,6 +1,5 @@
 package com.glumes.eyeshock.fragments.home;
 
-import android.databinding.Observable;
 import android.databinding.ObservableField;
 
 import com.glumes.comlib.LogUtil;
@@ -10,7 +9,6 @@ import com.glumes.net.bean.HomeBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**

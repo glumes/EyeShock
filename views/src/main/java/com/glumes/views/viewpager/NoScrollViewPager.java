@@ -25,9 +25,8 @@ public class NoScrollViewPager extends ViewPager {
     }
 
     @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
-
-        return this.isPagingEnabled && super.onInterceptHoverEvent(event);
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return this.isPagingEnabled && super.onInterceptTouchEvent(ev);
     }
 
     @Override

@@ -16,7 +16,7 @@ import javax.inject.Inject;
  * Created by glumes on 2017/9/9.
  */
 
-public class NoScrollPagerAdapter extends FragmentPagerAdapter {
+public class  NoScrollPagerAdapter extends FragmentPagerAdapter {
 
     @Inject
     List<Fragment> mainFragmentList;

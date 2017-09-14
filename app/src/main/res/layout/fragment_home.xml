@@ -13,15 +13,13 @@
         android:orientation="vertical"
         tools:context="com.glumes.eyeshock.fragments.home.HomeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/tvShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
-
         <com.glumes.views.viewslider.ViewSlider
             android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
