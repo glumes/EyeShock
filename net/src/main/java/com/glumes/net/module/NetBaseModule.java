@@ -1,6 +1,7 @@
 package com.glumes.net.module;
 
 import com.glumes.comlib.LogUtil;
+import com.glumes.net.bean.BaseHomeModel;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -64,8 +65,20 @@ public class NetBaseModule {
 
     @Provides
     @Singleton
-    Gson proviceGson() {
+    Gson provideGson() {
 
-        return new Gson();
+        return new GsonBuilder()
+                .registerTypeAdapter(BaseHomeModel.class, new BaseHomeModelAdapter())
+                .create();
     }
 }
+
+
+
+
+
+
+
+
+
+

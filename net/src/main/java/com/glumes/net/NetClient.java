@@ -6,6 +6,7 @@ import com.glumes.net.bean.DiscoveryBean;
 import com.glumes.net.bean.DiscoveryCategoryBean;
 import com.glumes.net.bean.DiscoveryHotBean;
 import com.glumes.net.bean.HomeBean;
+import com.glumes.net.bean.HomeModule;
 import com.glumes.net.component.DaggerNetClientComponent;
 import com.glumes.net.constant.UrlConstant;
 import com.glumes.net.module.NetClientModule;
@@ -41,7 +42,7 @@ public class NetClient {
         return NetClientHolder.instance;
     }
 
-    public Observable<HomeBean> requetHomeContent() {
+    public Observable<HomeModule> requetHomeContent() {
         return serviceFactory.getEyeService().requetHomeContent(UrlConstant.HOME_URL);
     }
 

@@ -12,11 +12,6 @@ import com.bumptech.glide.Glide;
 
 public class BindingUtil {
 
-//    @BindingAdapter("app:menu")
-//    public static void setMenu(BottomNavigationView bottomNavigationView, int id) {
-//        bottomNavigationView.inflateMenu(id);
-//    }
-
     @BindingAdapter("bind:imageUrl")
     public static void loadImage(ImageView view, String url) {
         Glide.with(view.getContext())

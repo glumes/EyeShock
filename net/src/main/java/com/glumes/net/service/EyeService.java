@@ -5,6 +5,7 @@ import com.glumes.net.bean.DiscoveryBean;
 import com.glumes.net.bean.DiscoveryCategoryBean;
 import com.glumes.net.bean.DiscoveryHotBean;
 import com.glumes.net.bean.HomeBean;
+import com.glumes.net.bean.HomeModule;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -17,7 +18,7 @@ import retrofit2.http.Url;
 public interface EyeService {
 
     @GET
-    Observable<HomeBean> requetHomeContent(
+    Observable<HomeModule> requetHomeContent(
             @Url String url
     );
 
