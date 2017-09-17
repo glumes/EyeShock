@@ -48,7 +48,6 @@ public class HomeFragment extends BaseInfoFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         mViewModel.getHomeData();
 
         ImageSliderType slider1 = new ImageSliderType(getContext());

@@ -16,7 +16,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ItemViewHolder
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_item_layout, parent, false);
 
         return new ItemViewHolder(root);
     }

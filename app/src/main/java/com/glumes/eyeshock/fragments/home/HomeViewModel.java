@@ -4,7 +4,6 @@ import android.databinding.ObservableField;
 
 import com.glumes.comlib.LogUtil;
 import com.glumes.net.NetClient;
-import com.glumes.net.bean.HomeBean;
 import com.glumes.net.bean.HomeModule;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -18,8 +17,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel {
 
-    public final ObservableField<HomeBean> homeBean = new ObservableField<>();
+    public ObservableField<HomeModule> homeModule;
 
+
+    public HomeViewModel() {
+        homeModule = new ObservableField<>();
+    }
 
     public void getHomeData() {
         NetClient.getInstance()
@@ -28,8 +31,8 @@ public class HomeViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<HomeModule>() {
                     @Override
-                    public void accept(@NonNull HomeModule homeBean) throws Exception {
-                        LogUtil.d("home Bean to String is " + homeBean.toString());
+                    public void accept(@NonNull HomeModule module) throws Exception {
+                        homeModule.set(module);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
