@@ -2,7 +2,7 @@ package com.glumes.views.viewslider.slidertype;
 
 import android.view.View;
 
-import com.glumes.views.viewslider.sliderloader.imageloader.IImageSliderLoader;
+import com.glumes.views.viewslider.imageloader.IImageSliderLoader;
 
 /**
  * Created by glumes on 2017/9/10.

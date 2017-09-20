@@ -1,4 +1,4 @@
-package com.glumes.views.viewslider.sliderloader.imageloader;
+package com.glumes.views.viewslider.imageloader;
 
 import android.content.Context;
 import android.widget.ImageView;
