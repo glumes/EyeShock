@@ -16,15 +16,6 @@ public class BindingViewHolder extends RecyclerView.ViewHolder {
         this.mBinding = binding;
     }
 
-
-    /**
-     * bind whole data
-     */
-    public void bind() {
-
-        mBinding.executePendingBindings();
-    }
-
     public void bind(Object item) {
         mBinding.setVariable(com.glumes.databindingadapter.BR.viewModel, item);
         mBinding.executePendingBindings();

@@ -16,7 +16,6 @@ import com.glumes.views.viewslider.scroller.SpeedScroller;
 import com.glumes.views.viewslider.slidertype.ISliderView;
 
 import java.lang.reflect.Field;
-import java.util.List;
 
 /**
  * Created by glumes on 2017/9/10.

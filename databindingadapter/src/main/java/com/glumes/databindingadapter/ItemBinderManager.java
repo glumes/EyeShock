@@ -4,21 +4,19 @@ package com.glumes.databindingadapter;
  * Created by zhaoying on 2017/9/21.
  */
 
-import com.glumes.comlib.LogUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * keep multi class and holder
  */
-public class ItemHolderManager {
+public class ItemBinderManager {
 
 
     private final List<Class<?>> dataTypeList;
     private final List<Integer> viewHolderTypeList;
 
-    public ItemHolderManager() {
+    public ItemBinderManager() {
         dataTypeList = new ArrayList<>();
         viewHolderTypeList = new ArrayList<>();
     }
@@ -32,10 +30,8 @@ public class ItemHolderManager {
 
     public int findItemLayout(Object object) {
 
-        LogUtil.d("data type is " + dataTypeList.size());
+        int index = dataTypeList.indexOf(object.getClass());
 
-        int index = dataTypeList.indexOf(object);
-
-        return viewHolderTypeList.get(0);
+        return viewHolderTypeList.get(index);
     }
 }
