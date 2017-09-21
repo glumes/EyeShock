@@ -39,6 +39,7 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
                 parent,
                 false
         );
+
         return new BindingViewHolder(binding);
     }
 
@@ -74,6 +75,10 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     public <T> void addItemAndHolder(Class<? extends T> item, int layoutId) {
         mItemHolderManager.addItemAndHolder(item, layoutId);
+    }
+
+    public <T> void addItemAndLayoutAndHolder(Class<? extends T> item, int layoutId, Class<?> viewHolder) {
+        mItemHolderManager.addItemAndLayoutAndHolder(item, layoutId, viewHolder);
     }
 
 
