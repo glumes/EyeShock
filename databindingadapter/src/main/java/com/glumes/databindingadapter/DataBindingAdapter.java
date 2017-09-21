@@ -1,45 +1,76 @@
 package com.glumes.databindingadapter;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ObservableArrayMap;
 import android.databinding.ObservableList;
+import android.databinding.ObservableMap;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.glumes.comlib.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by glumes on 2017/9/18.
  */
 
-public class DataBindingAdapter<T> extends RecyclerView.Adapter {
 
-    private ObservableList<T> mObservableData;
+public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> {
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+
+    private ObservableList mObservableData;
+
+    private ObservableArrayMap<Object, Integer> mObservableMap;
+
+    private final ItemHolderManager mItemHolderManager;
+
+    private List<?> mItems;
+
+    public DataBindingAdapter() {
+        mItemHolderManager = new ItemHolderManager();
+        mItems = new ArrayList<>();
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ViewDataBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                viewType,
+                parent,
+                false
+        );
+        return new BindingViewHolder(binding);
+    }
 
+    @Override
+    public void onBindViewHolder(BindingViewHolder holder, int position) {
+        Object item = mItems.get(position);
+        holder.bind(item);
     }
 
     @Override
     public int getItemCount() {
-        return mObservableData.size();
+        LogUtil.d("size is " + mItems.size());
+        return mItems.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        Object object = mItems.get(position);
+        return mItemHolderManager.findItemLayout(object);
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
+    public <T> void addItemAndHolder(Class<? extends T> item, int layoutId) {
+        mItemHolderManager.addItemAndHolder(item, layoutId);
     }
 
-    @Override
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView);
+    public void setItems(List<?> items) {
+        this.mItems = items;
+        notifyDataSetChanged();
     }
 
 

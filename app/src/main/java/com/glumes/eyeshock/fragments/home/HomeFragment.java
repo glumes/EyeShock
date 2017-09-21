@@ -62,6 +62,10 @@ public class HomeFragment extends BaseInfoFragment {
         slider3.image("http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         mBinding.imageSlider.addSlider(slider3);
 
+        mBinding.imageSlider.setShowTime(3 * 1000);
+        mBinding.imageSlider.start();
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.recyclerView.setHasFixedSize(true);
         mBinding.recyclerView.setLayoutManager(layoutManager);

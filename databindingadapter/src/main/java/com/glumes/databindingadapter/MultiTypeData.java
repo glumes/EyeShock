@@ -9,4 +9,5 @@ package com.glumes.databindingadapter;
  * 若只有一种，则无需实现该接口，或许可以考虑使用 Object
  */
 public interface MultiTypeData {
+
 }

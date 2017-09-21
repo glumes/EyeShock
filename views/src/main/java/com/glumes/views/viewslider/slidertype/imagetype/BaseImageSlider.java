@@ -26,5 +26,4 @@ public abstract class BaseImageSlider implements ISliderView {
         return this;
     }
 
-
 }
