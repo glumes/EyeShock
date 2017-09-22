@@ -14,5 +14,4 @@ public class ImageViewHolder extends DataBindingViewHolder<ImageModel> {
         super(binding);
     }
 
-
 }

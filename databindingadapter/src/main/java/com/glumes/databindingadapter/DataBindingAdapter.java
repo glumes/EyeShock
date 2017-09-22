@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> {
 
-    private ObservableList<Object> mObservableData;
+    private Items mItems;
 
     private final ItemBinderManager mItemHolderManager;
 
@@ -27,7 +27,7 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     public DataBindingAdapter() {
         mItemHolderManager = new ItemBinderManager();
-        mObservableData = new ObservableArrayList<>();
+        mItems = new Items();
         mOnListChangeCallback = new OnListChangeCallback(this);
     }
 
@@ -45,7 +45,7 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position) {
-        Object item = mObservableData.get(position);
+        Object item = mItems.get(position);
         holder.bind(item);
         LogUtil.d("onBindViewHolder ");
     }
@@ -54,7 +54,9 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position, List<Object> payloads) {
         if (payloads != null && !payloads.isEmpty()) {
-            Object item = mObservableData.get(position);
+
+            Object item = mItems.get(position);
+
 //            holder.bind(item);
             holder.bind(item, payloads);
             LogUtil.d("onBindViewHolder with payloads");
@@ -66,12 +68,13 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mObservableData.size();
+        return mItems.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        Object object = mObservableData.get(position);
+//        Object object = mObservableData.get(position);
+        Object object = mItems.get(position);
         return mItemHolderManager.findItemLayout(object);
     }
 
@@ -85,13 +88,11 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     public void setItems(ObservableArrayList<Object> items) {
         mObservableData.clear();
+        mItems.clear();
+        mItems = items;
         mObservableData = items;
         notifyDataSetChanged();
         mObservableData.addOnListChangedCallback(mOnListChangeCallback);
     }
 
-    @Override
-    public void registerAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
-        super.registerAdapterDataObserver(observer);
-    }
 }
