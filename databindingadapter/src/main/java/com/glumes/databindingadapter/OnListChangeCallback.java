@@ -3,6 +3,8 @@ package com.glumes.databindingadapter;
 import android.databinding.ObservableList;
 import android.support.v7.widget.RecyclerView;
 
+import com.glumes.comlib.LogUtil;
+
 /**
  * Created by glumes on 2017/9/21.
  */
@@ -24,6 +26,7 @@ public class OnListChangeCallback extends ObservableList.OnListChangedCallback {
     @Override
     public void onItemRangeChanged(ObservableList sender, int positionStart, int itemCount) {
         mBindingAdapter.notifyItemRangeChanged(positionStart, itemCount);
+        LogUtil.d("item change count is " + itemCount);
     }
 
     @Override
@@ -40,4 +43,6 @@ public class OnListChangeCallback extends ObservableList.OnListChangedCallback {
     public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
         mBindingAdapter.notifyItemRangeRemoved(positionStart, itemCount);
     }
+
+
 }

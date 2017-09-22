@@ -18,11 +18,17 @@ public class Items extends ObservableArrayList<Object> {
 
     public void addLast(Object obj) {
         int length = size();
-        set(length - 1, obj);
+        add(length, obj);
     }
 
     public void setEmpty(Object obj) {
         clear();
         add(obj);
+    }
+
+    @Override
+    public Object set(int index, Object object) {
+        return super.set(index, object);
+
     }
 }

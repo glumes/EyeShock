@@ -7,10 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.glumes.comlib.LogUtil;
 import com.glumes.databindingadapter.DataBindingAdapter;
 import com.glumes.databindingadapter.Items;
-import com.glumes.eyeshock.adapter.ListAdapter;
+import com.glumes.eyeshock.model.ImageModel;
 import com.glumes.eyeshock.model.TestHeaderModel;
 import com.glumes.eyeshock.model.TestModel;
 
@@ -28,6 +27,9 @@ public class TestActivity extends AppCompatActivity {
 
     Items mDataItems;
 
+    public static final String URL = "http://img.lanrentuku.com/img/allimg/1706/14972551527463.jpg";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class TestActivity extends AppCompatActivity {
 
         bindingAdapter.addItemAndHolder(TestModel.class, R.layout.test_item_layout);
         bindingAdapter.addItemAndHolder(TestHeaderModel.class, R.layout.test_header_layout);
+        bindingAdapter.addItemAndHolder(ImageModel.class, R.layout.image_item_layout);
 
         mItems = new ArrayList<>();
 
@@ -62,31 +65,31 @@ public class TestActivity extends AppCompatActivity {
             mObservableItems.add(new TestModel("test  " + i));
         }
 
-//        bindingAdapter.setItems(mItems);
-
-//        bindingAdapter.setItems(mObservableItems);
+        mDataItems.addLast(new ImageModel(URL, "this is description"));
 
         bindingAdapter.setItems(mDataItems);
 
         mRecyclerView.setAdapter(bindingAdapter);
 
-//        mRecyclerView.setAdapter(new ListAdapter());
 
         findViewById(R.id.action).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItems.add(new TestHeaderModel("this is footer"));
 
-                mObservableItems.add(new TestHeaderModel("this is footer"));
-                LogUtil.d("add footer item");
-                mObservableItems.set(0, new TestHeaderModel("change new header"));
+                TestHeaderModel first = (TestHeaderModel) mDataItems.get(0);
 
-                mDataItems.addFirst(new TestHeaderModel("change new header"));
+                first.headers = "this is part headers";
 
-                mDataItems.addLast(new TestHeaderModel("change new header"));
+//                mDataItems.set(0, first);
 
+                ImageModel imageModel = (ImageModel) mDataItems.get(mDataItems.size() - 1);
 
-                mDataItems.setEmpty(new TestHeaderModel("change new header"));
+                imageModel.setContent("this is new description");
+
+//                mDataItems.set(mDataItems.size() - 1, imageModel);
+
+                bindingAdapter.notifyItemChanged(bindingAdapter.getItemCount()-1, "this is new description");
+
             }
         });
 

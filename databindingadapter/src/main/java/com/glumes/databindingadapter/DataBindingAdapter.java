@@ -50,11 +50,13 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         LogUtil.d("onBindViewHolder ");
     }
 
+
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position, List<Object> payloads) {
-        if (payloads != null && payloads.size() > 0) {
+        if (payloads != null && !payloads.isEmpty()) {
             Object item = mObservableData.get(position);
-            holder.bind(item);
+//            holder.bind(item);
+            holder.bind(item, payloads);
             LogUtil.d("onBindViewHolder with payloads");
         } else {
             onBindViewHolder(holder, position);
@@ -81,7 +83,6 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         mItemHolderManager.addItemAndLayoutAndHolder(item, layoutId, viewHolder);
     }
 
-
     public void setItems(ObservableArrayList<Object> items) {
         mObservableData.clear();
         mObservableData = items;
@@ -89,5 +90,8 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         mObservableData.addOnListChangedCallback(mOnListChangeCallback);
     }
 
-
+    @Override
+    public void registerAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
+        super.registerAdapterDataObserver(observer);
+    }
 }
