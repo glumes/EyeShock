@@ -75,6 +75,10 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         mItemHolderManager.addItemAndHolder(item, layoutId);
     }
 
+    public <T, V extends PayloadViewHolder> void addItemAndViewHolder(Class<? extends T> item, V viewholder) {
+
+    }
+
     public <T> void addItemAndLayoutAndHolder(Class<? extends T> item, int layoutId, Class<?> viewHolder) {
         mItemHolderManager.addItemAndLayoutAndHolder(item, layoutId, viewHolder);
     }
