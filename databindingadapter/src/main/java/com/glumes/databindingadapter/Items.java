@@ -27,11 +27,6 @@ public class Items extends ObservableArrayList<Object> {
     }
 
 
-    public void set(int index, Object object, Object payload) {
-        set(index, object);
-
-    }
-
 
 
 }

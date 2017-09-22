@@ -76,19 +76,9 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                TestHeaderModel first = (TestHeaderModel) mDataItems.get(0);
-
-                first.headers = "this is part headers";
-
-//                mDataItems.set(0, first);
-
                 ImageModel imageModel = (ImageModel) mDataItems.get(mDataItems.size() - 1);
 
                 imageModel.setContent("this is new description");
-
-//                mDataItems.set(mDataItems.size() - 1, imageModel);
-
-                bindingAdapter.notifyItemChanged(bindingAdapter.getItemCount()-1, "this is new description");
 
             }
         });

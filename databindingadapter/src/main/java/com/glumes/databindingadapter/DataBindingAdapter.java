@@ -1,8 +1,6 @@
 package com.glumes.databindingadapter;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,17 +45,13 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
     public void onBindViewHolder(BindingViewHolder holder, int position) {
         Object item = mItems.get(position);
         holder.bind(item);
-        LogUtil.d("onBindViewHolder ");
     }
 
 
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position, List<Object> payloads) {
         if (payloads != null && !payloads.isEmpty()) {
-
             Object item = mItems.get(position);
-
-//            holder.bind(item);
             holder.bind(item, payloads);
             LogUtil.d("onBindViewHolder with payloads");
         } else {
@@ -73,7 +67,6 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-//        Object object = mObservableData.get(position);
         Object object = mItems.get(position);
         return mItemHolderManager.findItemLayout(object);
     }
@@ -86,13 +79,11 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         mItemHolderManager.addItemAndLayoutAndHolder(item, layoutId, viewHolder);
     }
 
-    public void setItems(ObservableArrayList<Object> items) {
-        mObservableData.clear();
+    public void setItems(Items items) {
         mItems.clear();
         mItems = items;
-        mObservableData = items;
+        mItems.addOnListChangedCallback(mOnListChangeCallback);
         notifyDataSetChanged();
-        mObservableData.addOnListChangedCallback(mOnListChangeCallback);
     }
 
 }
