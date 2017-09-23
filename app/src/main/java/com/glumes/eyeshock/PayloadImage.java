@@ -16,11 +16,12 @@ public class PayloadImage extends PayloadViewHolder<ImageModel, ImageItemLayoutB
 
     @Override
     public void onBind(ImageModel data) {
-        mBinding.textView.setText(data.getContent());
+        mBinding.setViewModel(data);
     }
 
     @Override
     public void onBind(ImageModel data, Object payload) {
-
+        String content = (String) payload;
+        mBinding.textView.setText(content);
     }
 }

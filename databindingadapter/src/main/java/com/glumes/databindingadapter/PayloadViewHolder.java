@@ -10,10 +10,7 @@ import android.view.View;
 
 public abstract class PayloadViewHolder<T, D extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
-
     protected D mBinding;
-
-//    protected T data;
 
     public PayloadViewHolder(D binding) {
         super(binding.getRoot());
@@ -23,4 +20,8 @@ public abstract class PayloadViewHolder<T, D extends ViewDataBinding> extends Re
     public abstract void onBind(T data);
 
     public abstract void onBind(T data, Object payload);
+
+    public D getBinding() {
+        return mBinding;
+    }
 }
