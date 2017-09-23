@@ -26,17 +26,20 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
     public DataBindingAdapter() {
         mItemHolderManager = new ItemBinderManager();
         mItems = new Items();
+        mItems.setAdapter(this);
         mOnListChangeCallback = new OnListChangeCallback(this);
     }
 
     @Override
     public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // viewType is layout Id,so make ViewDataBinding by layoutId
         ViewDataBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 viewType,
                 parent,
                 false
         );
+
 
         return new BindingViewHolder(binding);
     }
@@ -46,7 +49,6 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         Object item = mItems.get(position);
         holder.bind(item);
     }
-
 
     @Override
     public void onBindViewHolder(BindingViewHolder holder, int position, List<Object> payloads) {
@@ -71,18 +73,19 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         return mItemHolderManager.findItemLayout(object);
     }
 
-    public <T> void addItemAndHolder(Class<? extends T> item, int layoutId) {
+    public <T> void addItem(Class<? extends T> item, int layoutId) {
         mItemHolderManager.addItemAndHolder(item, layoutId);
     }
 
-    public <T> void addItemAndLayoutAndHolder(Class<? extends T> item, int layoutId, Class<?> viewHolder) {
-        mItemHolderManager.addItemAndLayoutAndHolder(item, layoutId, viewHolder);
+    public <T> void addItem(Class<? extends T> item, int layoutId, PayloadViewHolder<T, ?> holder) {
+        mItemHolderManager.addItem(item, layoutId, holder);
     }
 
     public void setItems(Items items) {
         mItems.clear();
         mItems = items;
         mItems.addOnListChangedCallback(mOnListChangeCallback);
+        mItems.setAdapter(this);
         notifyDataSetChanged();
     }
 

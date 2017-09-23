@@ -42,9 +42,9 @@ public class TestActivity extends AppCompatActivity {
 
         DataBindingAdapter bindingAdapter = new DataBindingAdapter();
 
-        bindingAdapter.addItemAndHolder(TestModel.class, R.layout.test_item_layout);
-        bindingAdapter.addItemAndHolder(TestHeaderModel.class, R.layout.test_header_layout);
-        bindingAdapter.addItemAndHolder(ImageModel.class, R.layout.image_item_layout);
+        bindingAdapter.addItem(TestModel.class, R.layout.test_item_layout);
+        bindingAdapter.addItem(TestHeaderModel.class, R.layout.test_header_layout);
+        bindingAdapter.addItem(ImageModel.class, R.layout.image_item_layout);
 
         mItems = new ArrayList<>();
 
