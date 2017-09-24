@@ -1,12 +1,9 @@
 package com.glumes.databindingadapter;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.glumes.comlib.LogUtil;
 
 import java.util.List;
 
@@ -15,7 +12,7 @@ import java.util.List;
  */
 
 
-public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> {
+public class DataBindingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Items mItems;
 
@@ -31,34 +28,36 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
     }
 
     @Override
-    public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // viewType is layout Id,so make ViewDataBinding by layoutId
-        ViewDataBinding binding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.getContext()),
-                viewType,
-                parent,
-                false
-        );
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int index) {
 
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        return new BindingViewHolder(binding);
+        ViewHolderBinder<?, ?> viewHolderWrapper = mItemHolderManager.getViewHolderWrapper(index);
+
+        return viewHolderWrapper.createViewHolder(inflater, parent);
     }
 
     @Override
-    public void onBindViewHolder(BindingViewHolder holder, int position) {
-        Object item = mItems.get(position);
-        holder.bind(item);
+    @SuppressWarnings("unchecked")
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Object object = mItems.get(position);
+
+        ViewHolderBinder viewHolder = mItemHolderManager.getViewHolderWrapper(holder.getItemViewType());
+
+        viewHolder.onBindViewHolder((BindingViewHolder) holder, object);
     }
 
     @Override
-    public void onBindViewHolder(BindingViewHolder holder, int position, List<Object> payloads) {
+    @SuppressWarnings("unchecked")
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List<Object> payloads) {
         if (payloads != null && !payloads.isEmpty()) {
-            Object item = mItems.get(position);
-            holder.bind(item, payloads);
-            LogUtil.d("onBindViewHolder with payloads");
+            Object object = mItems.get(position);
+
+            ViewHolderBinder viewHolder = mItemHolderManager.getViewHolderWrapper(holder.getItemViewType());
+
+            viewHolder.onBindViewHolder((BindingViewHolder) holder, object, payloads);
         } else {
             onBindViewHolder(holder, position);
-            LogUtil.d("onBindViewHolder without payloads");
         }
     }
 
@@ -67,19 +66,23 @@ public class DataBindingAdapter extends RecyclerView.Adapter<BindingViewHolder> 
         return mItems.size();
     }
 
+
+    // type 返回 item 对应的 viewholder 在 ItemBinderManager 中的 位置。
+    // 然后根据这个位置，在 onCreateViewHolder 中找到 对应的 ViewHolder 直接返回即可。
+
+
+    // 在 onBindViewHolder 方法中，根据 position，找到对应位置的 item 数据类型
+    // 然后根据数据类型，依旧是找到对应的 ViewHolder ，然后再根据调用 ViewHolder 的 bind 方法绑定数据即可。
     @Override
     public int getItemViewType(int position) {
         Object object = mItems.get(position);
-        return mItemHolderManager.findItemLayout(object);
-    }
-
-    public <T> void addItem(Class<? extends T> item, int layoutId) {
-        mItemHolderManager.addItemAndHolder(item, layoutId);
+        return mItemHolderManager.findItemIndex(object);
     }
 
 
-    public <T> void addItem(Class<? extends T> item, int layoutId, PayloadViewHolder<T, ?> holder) {
-        mItemHolderManager.addItem(item, layoutId, holder);
+    public <T> DataBindingAdapter map(Class<? extends T> item, ViewHolderBinder<T, ?> holder) {
+        mItemHolderManager.addItem(item, holder);
+        return this;
     }
 
     public void setItems(Items items) {

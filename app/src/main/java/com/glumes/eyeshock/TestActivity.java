@@ -1,6 +1,6 @@
 package com.glumes.eyeshock;
 
-import android.databinding.ObservableArrayList;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,20 +10,12 @@ import android.view.View;
 import com.glumes.databindingadapter.DataBindingAdapter;
 import com.glumes.databindingadapter.Items;
 import com.glumes.eyeshock.model.ImageModel;
-import com.glumes.eyeshock.model.TestHeaderModel;
 import com.glumes.eyeshock.model.TestModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
 
     RecyclerView mRecyclerView;
-
-    List<Object> mItems;
-
-    ObservableArrayList<Object> mObservableItems;
 
     Items mDataItems;
 
@@ -42,43 +34,29 @@ public class TestActivity extends AppCompatActivity {
 
         DataBindingAdapter bindingAdapter = new DataBindingAdapter();
 
-        bindingAdapter.addItem(TestModel.class, R.layout.test_item_layout);
-        bindingAdapter.addItem(TestHeaderModel.class, R.layout.test_header_layout);
-        bindingAdapter.addItem(ImageModel.class, R.layout.image_item_layout);
-
-        mItems = new ArrayList<>();
-
         mDataItems = new Items();
 
-        mObservableItems = new ObservableArrayList<>();
+        mDataItems.add(new ImageModel(URL, "this is content"));
+        mDataItems.add(new TestModel("this is test content"));
 
-        mItems.add(new TestHeaderModel("this is header"));
-        mObservableItems.add(new TestHeaderModel("this is header"));
-        mDataItems.add(new TestHeaderModel("this is header"));
-
-
-        for (int i = 0; i < 6; i++) {
-            mItems.add(new TestModel("test  " + i));
-
-            mDataItems.add(new TestModel("test  " + i));
-
-            mObservableItems.add(new TestModel("test  " + i));
+        for (int i = 0; i < 10; i++) {
+            mDataItems.add(new TestModel("this is test content " + i));
         }
 
-        mDataItems.addLast(new ImageModel(URL, "this is description"));
-
-        bindingAdapter.setItems(mDataItems);
+        bindingAdapter
+                .map(ImageModel.class, new ImageViewHolderBinder())
+                .map(TestModel.class, new TextViewHolderBinder())
+                .setItems(mDataItems);
 
         mRecyclerView.setAdapter(bindingAdapter);
-
 
         findViewById(R.id.action).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ImageModel imageModel = (ImageModel) mDataItems.get(mDataItems.size() - 1);
+//                mDataItems.add(new ImageModel("https://cdn.pixabay.com/photo/2017/08/19/10/00/eagle-2657888_960_720.jpg", "this is content"));
 
-                imageModel.setContent("this is new description");
+                mDataItems.notifyItemChanged(0, "this is new content " + System.currentTimeMillis());
 
             }
         });

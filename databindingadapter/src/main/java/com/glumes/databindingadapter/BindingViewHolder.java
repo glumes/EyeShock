@@ -5,25 +5,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by zhaoying on 2017/9/20.
+ * Created by zhaoying on 2017/9/22.
  */
 
-public class BindingViewHolder extends RecyclerView.ViewHolder {
+public abstract class BindingViewHolder<T, D extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
-    private ViewDataBinding mBinding;
+    protected D mBinding;
 
-    public BindingViewHolder(ViewDataBinding binding) {
+    public BindingViewHolder(D binding) {
         super(binding.getRoot());
         this.mBinding = binding;
     }
 
+    protected abstract void onBind(T data);
 
-    public void bind(Object item, Object payload) {
-        mBinding.executePendingBindings();
-    }
+    protected abstract void onBind(T data, Object payload);
 
-    public void bind(Object item) {
-        mBinding.setVariable(com.glumes.databindingadapter.BR.viewModel, item);
-        mBinding.executePendingBindings();
+    public D getBinding() {
+        return mBinding;
     }
 }
