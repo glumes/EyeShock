@@ -25,6 +25,10 @@ public class HomeFragment extends BaseInfoFragment {
 
     private HomeViewModel mViewModel;
 
+
+    public HomeFragment() {
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +76,7 @@ public class HomeFragment extends BaseInfoFragment {
         mBinding.recyclerView.setAdapter(new ListAdapter());
     }
 
-    public HomeFragment() {
-    }
+
 
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();

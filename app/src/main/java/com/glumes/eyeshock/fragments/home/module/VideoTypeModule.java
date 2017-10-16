@@ -24,4 +24,6 @@ public class VideoTypeModule {
     public void setViewModule(VideoBeanForClient module) {
         viewModule.set(module);
     }
+
+
 }
